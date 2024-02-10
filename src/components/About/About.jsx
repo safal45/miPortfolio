@@ -34,6 +34,7 @@ function About() {
         <img
           src="/down2.png"
           className="h-12 ml-80  -mt-32 animate-pulse w-16"
+          alt="logo"
         />
         <LanguageComponent languages={languageData} />
       </div>
@@ -45,6 +46,7 @@ function About() {
         <img
           className="h-[420px] w-auto pr-12 rounded-full  blur-sm hover:blur-0 hover:"
           src="/miii.jpg"
+          alt="logo"
         />
       </div>
       <div className="w-1/3 text-white">
@@ -52,7 +54,7 @@ function About() {
           {" "}
           My qualifications
         </h1>
-        <img src="/down3.png" className="h-12 animate-pulse w-12" />
+        <img src="/down3.png" alt="logo" className="h-12 animate-pulse w-12" />
         <div className="text-white font-Anton">
           <span>
             <h1 className="  underline font-extrabold text-2xl">
@@ -79,7 +81,11 @@ function About() {
             <h1 className="font-Handy2 rotate-[13deg] text-xl mt-20 pb-6 ml-52 text-white">
               My hobby
             </h1>
-            <img src="/down2.png" className="h-12 animate-pulse ml-52 -mt-12 w-16" />
+            <img
+              src="/down2.png"
+              className="h-12 animate-pulse ml-52 -mt-12 w-16"
+              alt="logo"
+            />
             <h1 className="font-Handy2 font-extrabold text-3xl pb-2 text-white">
               Playing Volleyball
             </h1>

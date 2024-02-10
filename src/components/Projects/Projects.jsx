@@ -50,10 +50,11 @@ function Projects() {
     <section id="project" className="text-white">
       <img
         className="h-10 w-16 transition-transform transform hover:scale-110"
-        src= "/car.png"
+        src="/car.png"
+        alt="logo"
       />
       <hr className="h-px bg-white border-0 dark:bg-gray-700" />
-      <ProjectComponent projects={projectData}/>
+      <ProjectComponent projects={projectData} />
     </section>
   );
 }
