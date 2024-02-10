@@ -11,7 +11,7 @@ export default function Home() {
 
     return (
       <main>
-        <div className="flex flex-wrap justify-between w-sreen">
+        <section id="home" className="flex flex-wrap justify-between w-sreen">
           
             <img
               src="https://cdn-icons-png.flaticon.com/128/5263/5263662.png"
@@ -110,7 +110,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </main>
     );
 }

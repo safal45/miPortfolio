@@ -26,7 +26,7 @@ function About() {
   
 
   return (
-    <div className="flex -mt-6">
+    <section id="about" className="flex -mt-6">
       <div className="w-1/3  flex flex-wrap  text-white ">
         <h1 className="font-Handy2 h-6 w-auto pl-80 pt-6 rotate-[13deg] text-2xl">
           My Skills
@@ -86,7 +86,7 @@ function About() {
           </span>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

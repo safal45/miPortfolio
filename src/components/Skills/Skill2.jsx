@@ -20,9 +20,9 @@ function Skill2() {
   ];
 
   return (
-    <div className="text-white ">
+    <section id="skills" className="text-white ">
       <ProgressComponent progresses={progressData} />
-    </div>
+    </section>
   );
 }
 
