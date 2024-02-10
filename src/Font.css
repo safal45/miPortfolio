@@ -1,0 +1,18 @@
+
+
+@font-face {
+    font-family: Anton;
+    src: url('/home/suraj/safal data new/Portfolio_via_React/my_portfolio/public/font-family/Anton-Regular.ttf') format('tff');
+}
+
+.font-Anton {
+    font-family: Anton;
+}
+@font-face {
+    font-family: Handy;
+    src: url('./font-family/Estonia-Regular.ttf');
+}
+
+.font-Handy {
+    font-family: Handy;
+}

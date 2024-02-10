@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+@font-face {
+    font-family: Anton;
+    src: url('../public/font-family/Anton-Regular.ttf') ;
+}
+
+.font-Anton {
+    font-family: Anton;
+}
+@font-face {
+    font-family: Handy;
+    src: url('../public/font-family/Estonia-Regular.ttf');
+}
+
+.font-Handy {
+    font-family: Handy;
+}
+#root{
+  min-height: 100vh;
+}
+
+@font-face {
+    font-family: Handy2;
+    src: url('../public/font-family/BadScript-Regular.ttf') ;
+}
+.font-Handy2 {
+    font-family: Handy2;
+}
