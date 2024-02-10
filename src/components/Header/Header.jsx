@@ -18,7 +18,7 @@ export default function Header() {
         <nav className="bg-black">
           <div className="w-full h-full p-6 flex flex-wrap justify-between items-center shadow-lg shadow-purple-800 ">
             <h1 className=" font-Anton text-3xl   text-purple-800 flex items-center">
-              WELCOME!
+              WELCOME1!!!!!
             </h1>
 
             <div
