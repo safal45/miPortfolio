@@ -18,7 +18,7 @@ export default function Header() {
         <nav className="bg-black">
           <div className="w-full h-full p-6 flex flex-wrap justify-between items-center shadow-lg shadow-purple-800 ">
             <h1 className=" font-Anton text-3xl   text-purple-800 flex items-center">
-              WELCOME1!!!!!
+              WELCOME!!
             </h1>
 
             <div
@@ -37,12 +37,22 @@ export default function Header() {
                   </h1>
                 </li>
                 <li>
-                  <h1 className="text-xl  font-Anton text-white lg:hover:text-purple-800 mx-10">
+                  <h1
+                    onClick={() => {
+                      scrollToSection("about");
+                    }}
+                     className="text-xl  font-Anton text-white lg:hover:text-purple-800 mx-10"
+                  >
                     ABOUT
                   </h1>
                 </li>
                 <li>
-                  <h1 className="text-xl  font-Anton text-white lg:hover:text-purple-800 mx-10">
+                  <h1
+                    onClick={() => {
+                      scrollToSection("skills");
+                    }}
+                    className="text-xl  font-Anton text-white lg:hover:text-purple-800 mx-10"
+                  >
                     SKILLS
                   </h1>
                 </li>
@@ -57,7 +67,12 @@ export default function Header() {
                   </h1>
                 </li>
                 <li>
-                  <h1 className="text-xl font-Anton  text-white lg:hover:text-purple-800 mx-10">
+                  <h1
+                    onClick={() => {
+                      scrollToSection("contactus");
+                    }}
+                    className="text-xl font-Anton  text-white lg:hover:text-purple-800 mx-10"
+                  >
                     CONTACT ME
                   </h1>
                 </li>

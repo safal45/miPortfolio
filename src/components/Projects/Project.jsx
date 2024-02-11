@@ -18,7 +18,7 @@ const ProjectComponent = ({ projects }) => {
           >
             <div className="w-1/2 shadow-lg shadow-purple-800 hover:shadow-white bg-blue-400 p-16 rounded-xl flex justify-center items-center">
               <div className=" w-full h-auto ">
-                <h1 className="text-red-950  font-Anton text-7xl">
+                <h1 className="text-red-950  font-Anton text-7xl pb-4">
                   {" "}
                   {project.name}
                 </h1>
