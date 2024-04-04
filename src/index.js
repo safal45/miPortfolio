@@ -7,8 +7,6 @@ import Home from './components/Home/Home';
 import About from './components/About/About';
 import Projects from './components/Projects/Projects';
 import Contactus from './components/contact/Contactus';
-import Skill2 from './components/Skills/Skill2';
-
 
 
 
@@ -18,7 +16,6 @@ root.render(
     <Layout>
             <Home />
             <About />
-            <Skill2 />
             <Projects />
             <Contactus/>
     </Layout>

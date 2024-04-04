@@ -15,7 +15,7 @@ export default function Header() {
 
     return (
       <header className="shadow fixed w-full font-Anton z-50 top-0 ">
-        <nav className="bg-black">
+        <nav className="bg-white dark:bg-black">
           <div className="w-full h-full p-6 flex flex-wrap justify-between items-center shadow-lg shadow-purple-800 ">
             <h1 className=" font-Anton text-3xl   text-purple-800 flex items-center">
               WELCOME!!
@@ -28,7 +28,7 @@ export default function Header() {
               <ul className="flex flex-col lg:flex-row lg:space-x-8 ">
                 <li>
                   <h1
-                    className="text-xl  font-Anton text-white lg:hover:text-purple-800 mx-10"
+                    className="text-xl  font-Anton text-black dark:text-white lg:hover:text-purple-800 mx-10"
                     onClick={() => {
                       scrollToSection("home");
                     }}
@@ -41,24 +41,15 @@ export default function Header() {
                     onClick={() => {
                       scrollToSection("about");
                     }}
-                     className="text-xl  font-Anton text-white lg:hover:text-purple-800 mx-10"
+                    className="text-xl  font-Anton text-black dark:text-white lg:hover:text-purple-800 mx-10"
                   >
                     ABOUT
                   </h1>
                 </li>
+               
                 <li>
                   <h1
-                    onClick={() => {
-                      scrollToSection("skills");
-                    }}
-                    className="text-xl  font-Anton text-white lg:hover:text-purple-800 mx-10"
-                  >
-                    SKILLS
-                  </h1>
-                </li>
-                <li>
-                  <h1
-                    className="text-xl  font-Anton text-white lg:hover:text-purple-800 mx-10"
+                    className="text-xl  font-Anton text-black dark:text-white lg:hover:text-purple-800 mx-10"
                     onClick={() => {
                       scrollToSection("project");
                     }}
@@ -71,7 +62,7 @@ export default function Header() {
                     onClick={() => {
                       scrollToSection("contactus");
                     }}
-                    className="text-xl font-Anton  text-white lg:hover:text-purple-800 mx-10"
+                    className="text-xl font-Anton  text-black dark:text-white lg:hover:text-purple-800 mx-10"
                   >
                     CONTACT ME
                   </h1>

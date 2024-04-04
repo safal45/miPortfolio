@@ -18,7 +18,7 @@ function Projects() {
       value:
         "Created By HTML , CSS , JAVASCRIPT , FLASK ,SQLITE, BOOTSTRAP ETC. Lorem",
       about:
-        "Our Blog web project! Built using Flask, html, css, Bootstrap, SQLAlchemy, and SQLite, it offers a seamless user experience. Users can create and manage their blogs, reset passwords securely, and edit their profiles easily.Our Blog web project! Built using Flask, html, css, Bootstrap, SQLAlchemy, and SQLite, it offers a seamless user experience. Users can create and manage their blogs, reset passwords securely, and edit their profiles easily",
+        "Our Blog web project! Built using Flask, html, css, Bootstrap, SQLAlchemy, and SQLite, it offers a seamless user experience. Users can create and manage their blogs, reset passwords securely, and edit their profiles easily.Our Blog web project! Built using Flask, html, css, Bootstrap, SQLAlchemy, and SQLite, it offers a seamless user experience. Users can create and manage their blogs, reset passwords securely, and edit their profiles easily Our Blog web project! Built using Flask, html, css, Bootstrap, SQLAlchemy, and SQLite, it offers a seamless user experience. Users can create and manage their blogs, reset passwords securely, and edit their profiles easily.Our Blog web project! Built using Flask, html, css, Bootstrap, SQLAlchemy, and SQLite, it offers a seamless user experience. Users can create and manage their blogs, reset passwords securely, and edit their profiles easily",
       deploy: "myblog.safalpathak.tech",
       repo: "https://github.com/safal45/my_Blog",
     },

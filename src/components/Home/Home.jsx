@@ -13,22 +13,22 @@ export default function Home() {
       <main>
         <section
           id="home"
-          className="flex pt-16 flex-wrap justify-between w-sreen"
+          className=" bg-white dark:bg-black flex pt-16 flex-wrap justify-between w-sreen"
         >
           <img
             src="https://cdn-icons-png.flaticon.com/128/5263/5263662.png"
-            className="bg-black w-12 h-20  ml-24 "
+            className="bg-white dark:bg-black w-12 h-20  ml-24 "
             alt="bulb"
           />
 
           <div className=" flex position-start w-full">
             <img
               src="/Mypic.jpeg"
-              className="bg-white w-1/3 ml-44 -mt-20 "
+              className="bg-white dark:bg-black w-1/3 ml-44 -mt-20 "
               alt="my Pic"
             />
             <div className="  w-2/3">
-              <div className="h-1/3 w-full font-mono pr-32 font-extrabold pt-[110px] text-end text-white text-5xl">
+              <div className="h-1/3 w-full font-mono pr-32 font-extrabold pt-[110px] text-end text-black dark:text-white text-5xl">
                 <Typewriter
                   options={{
                     strings: ["Hello There!!!", "नमस्ते!!!"],
@@ -39,11 +39,13 @@ export default function Home() {
               </div>
               <div className="h-2/3 w-auto">
                 <h1 className="font-Anton text-8xl text-purple-800">
-                  <span className="text-white text-8xl font-Anton ">I AM</span>{" "}
+                  <span className="text-black dark:text-white text-8xl font-Anton ">
+                    I AM
+                  </span>{" "}
                   SAFAL PATHAK
                 </h1>
 
-                <h1 className="text-white font-serif text-sm pr-20">
+                <h1 className="text-black dark:text-white font-serif text-sm pr-20">
                   Hello! I'm passionate about exploring the vast landscape of
                   technology. My expertise spans various programming languages
                   and tools, including C++, Python, JavaScript, HTML5, CSS3, and
@@ -65,7 +67,7 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <button className="bg-black h-[30px] w-[110px] mr-5  hover:shadow-md hover:shadow-fuchsia-50     shadow-md shadow-purple-500 border border-purple-800 text-white font-bold py-2 px-4 rounded-2xl inline-flex items-center">
+                    <button className=" bg-black  h-[30px] w-[110px] mr-5  hover:shadow-md hover:shadow-fuchsia-50     shadow-md shadow-purple-500 border border-purple-800 text-white font-bold py-2 px-4 rounded-2xl inline-flex items-center">
                       <svg
                         className="fill-current w-4 h-4 mr-2"
                         xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +85,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <svg
-                      className="h-[25px] w-[25px] shadow-lg mx-2 text-purple-800"
+                      className="h-[25px] w-[25px] bg-black shadow-lg mx-2 text-purple-800"
                       fill="#FFFFFF"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 50 50"
@@ -99,7 +101,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <svg
-                      className="h-[25px] w-[25px] shadow-lg mx-2 text-purple-800"
+                      className="h-[25px] w-[25px] shadow-lg bg-black  mx-2 text-purple-800"
                       fill="#FFFFFF"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 50 50"
@@ -115,7 +117,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <svg
-                      className="h-[25px] w-[25px] shadow-lg mx-2 text-purple-800"
+                      className="h-[25px] w-[25px] bg-black shadow-lg mx-2 text-purple-800"
                       fill="#FFFFFF"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 48 48"
@@ -131,7 +133,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <svg
-                      className="h-[25px] w-[25px] shadow-lg text-purple-800  ml-2 mr-32"
+                      className="h-[25px] w-[25px] bg-black  shadow-lg text-purple-800  ml-2 mr-32"
                       fill="#FFFFFF"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 50 50"
