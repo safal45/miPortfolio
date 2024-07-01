@@ -49,16 +49,21 @@ function Projects() {
   ];
 
   return (
-    <section id="project" className="pt-20 text-white">
-      <img
-        className="h-10 w-16 transition-transform transform hover:scale-110"
-        src="/car.png"
-        alt="logo"
-      />
-      <hr className="h-px bg-white border-0 dark:bg-gray-700" />
-      <ProjectComponent projects={projectData} />
+    <section id="project" className=" min-h-screen text-white px-4 md:px-8 lg:px-16">
+      <div className="flex justify-start md:justify-start mb-4">
+        <img
+          className="h-10 w-16 transition-transform transform hover:scale-110"
+          src="/car.png"
+          alt="logo"
+        />
+      </div>
+      <hr className="h-px bg-white border-0 dark:bg-gray-700 w-full mb-4" />
+      <div className="flex justify-center w-full">
+        <ProjectComponent projects={projectData} />
+      </div>
     </section>
   );
 }
+
 
 export default Projects;

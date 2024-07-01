@@ -1,9 +1,7 @@
 import React from "react";
 import LanguageComponent from "../Skills/Skills";
 
-
 function About() {
-
   const languageData = [
     { name: " ", logo: "C.png" },
     { name: " ", logo: "Cpp.png" },
@@ -23,11 +21,9 @@ function About() {
     { name: " ", logo: "SQLite.png" },
   ];
 
-  
-
   return (
-    <section id="about" className="flex dark:bg-black bg-white pt-16">
-      <div className="w-1/3  flex flex-wrap  text-black dark:text-white ">
+    <section id="about" className="flex pt-16">
+      <div className="w-1/3  flex flex-wrap   text-white ">
         <h1 className="font-Handy2 h-6 w-auto pl-80 pt-6 rotate-[13deg] text-2xl">
           My Skills
         </h1>
@@ -38,14 +34,10 @@ function About() {
         />
         <LanguageComponent languages={languageData} />
       </div>
-      <div className="w-1/3 p-16 text-black dark:text-white">
+      <div className="w-1/3 p-16 text-white hidden">
         <span className="font-Handy2 flex">
           <h1>ME!!</h1>
-          <img
-            src="/down3.png"
-            className="h-12 animate-pulse w-12"
-            alt="down"
-          />
+          <img src="/down3.png" className="h-12 animate-pulse w-12" />
         </span>
         <img
           className="h-[420px] w-auto pr-12 rounded-full  blur-sm hover:blur-0 hover:"
@@ -53,13 +45,13 @@ function About() {
           alt="logo"
         />
       </div>
-      <div className="w-1/3 text-black dark:text-white">
+      <div className="w-1/3 text-white ">
         <h1 className=" pt-16  text-2xl font-Handy2 -ml-12">
           {" "}
           My qualifications
         </h1>
         <img src="/down3.png" alt="logo" className="h-12 animate-pulse w-12" />
-        <div className="text-black dark:text-white font-Anton">
+        <div className="text-white font-Anton">
           <span>
             <h1 className="  underline font-extrabold text-2xl">
               BACHELOR OF TECHNOLOGY MECH.E.
@@ -82,7 +74,7 @@ function About() {
             <h1 className="text-md text-center mr-48 -mt-1">2018-2019</h1>
           </span>
           <span>
-            <h1 className="font-Handy2 rotate-[13deg] text-xl mt-20 pb-6 ml-52 text-black dark:text-white">
+            <h1 className="font-Handy2 rotate-[13deg] text-xl mt-20 pb-6 ml-52 text-white">
               My hobby
             </h1>
             <img
@@ -90,7 +82,7 @@ function About() {
               className="h-12 animate-pulse ml-52 -mt-12 w-16"
               alt="logo"
             />
-            <h1 className="font-Handy2 font-extrabold text-3xl pb-2 text-black dark:text-white">
+            <h1 className="font-Handy2 font-extrabold text-3xl pb-2 text-white">
               Playing Volleyball
             </h1>
           </span>

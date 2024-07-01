@@ -15,7 +15,7 @@ root.render(
     <>
     <Layout>
             <Home />
-            <About />
+             <About /> 
             <Projects />
             <Contactus/>
     </Layout>
