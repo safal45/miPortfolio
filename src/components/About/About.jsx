@@ -34,7 +34,7 @@ function About() {
         />
         <LanguageComponent languages={languageData} />
       </div>
-      <div className="w-1/3 p-16 text-white hidden">
+      <div className="w-1/3 p-16 text-white">
         <span className="font-Handy2 flex">
           <h1>ME!!</h1>
           <img src="/down3.png" className="h-12 animate-pulse w-12" />
