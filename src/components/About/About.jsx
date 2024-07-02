@@ -17,7 +17,9 @@ function About() {
     { name: "VSCode", logo: "vsc.png" },
     { name: "React", logo: "logo192.png" },
     { name: "Flask", logo: "icons8-flask-600.png" },
-    { name: "MySQL", logo: "MySQL.png" },
+    { name: "TypeScript", logo: "typescript.png" },
+    { name: "Ubuntu", logo: "Ubuntu.png" },
+    { name: "NodeJS", logo: "nodejs.png" },
     { name: "SQLite", logo: "SQLite.png" },
   ];
 
@@ -30,7 +32,7 @@ function About() {
           </h1>
           <img
             src="/down2.png"
-            className="h-12 ml-4 md:ml-80 mt-12 -ml-24 md:mt-16 animate-pulse w-16"
+            className="h-12  md:ml-80 mt-12 -ml-24 md:mt-16 animate-pulse w-16"
             alt="logo"
           />
           <LanguageComponent languages={languageData} />

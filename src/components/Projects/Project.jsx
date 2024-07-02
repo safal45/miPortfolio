@@ -5,7 +5,7 @@ import "react-slideshow-image/dist/styles.css";
 const ProjectComponent = ({ projects }) => {
   console.log("Rendering ProjectComponent with data:", projects);
   return (
-    <div className="w-full  min-h-screen slide-container p-4">
+    <div className="w-full min-h-screen slide-container p-4">
       <Slide>
         {projects.map((project, index) => (
           <div
@@ -20,12 +20,14 @@ const ProjectComponent = ({ projects }) => {
                 <h1 className="text-white font-Anton text-sm md:text-lg pb-2">
                   {project.value}
                 </h1>
-                <h1 className="text-blue-800 font-Anton text-sm md:text-lg pb-2">
-                  <span className="text-purple-950 font-Anton text-md md:text-xl">
-                    Deployed On:
-                  </span>
-                  {project.deploy}
-                </h1>
+                {project.deploy && (
+                  <h1 className="text-blue-800 font-Anton text-sm md:text-lg pb-2">
+                    <span className="text-purple-950 font-Anton text-md md:text-xl">
+                      Deployed On:
+                    </span>
+                    {project.deploy}
+                  </h1>
+                )}
                 <h1 className="text-blue-800 font-Anton text-sm md:text-lg pb-2">
                   <span className="text-purple-950 font-Anton text-md md:text-xl">
                     Github Repo:

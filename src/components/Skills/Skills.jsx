@@ -2,7 +2,7 @@ import React from "react";
 
 const LanguageComponent = ({ languages }) => {
   return (
-    <div className="p-4 mx-2 bg-white bg-opacity-5 items-center justify-center flex flex-wrap w-full md:w-3/4">
+    <div className="p-4 mx-2  items-center bg-white bg-opacity-5  rounded-xl justify-center flex flex-wrap w-5/6 md:w-4/5">
       {languages.map((language, index) => (
         <div className="h-20 p-4   m-2" key={index}>
           <img
