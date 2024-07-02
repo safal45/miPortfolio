@@ -5,7 +5,7 @@ import "react-slideshow-image/dist/styles.css";
 const ProjectComponent = ({ projects }) => {
   console.log("Rendering ProjectComponent with data:", projects);
   return (
-    <div className="w-full min-h-screen slide-container p-4">
+    <div className="w-full min-h-screen slide-container p-4 mx-4">
       <Slide>
         {projects.map((project, index) => (
           <div
