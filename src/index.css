@@ -2,7 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-#root{
-    background-color: black;
-   min-height: screen;
+/* ── Skill card entrance ── */
+@keyframes skillIn {
+  from { opacity: 0; transform: translateY(22px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Project slider card entrance ── */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(28px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* ── Hanging bulb swing ── */
+@keyframes gentleSwing {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50%       { transform: rotate(2.5deg); }
+}
+
+/* ── Click / pull animation ── */
+@keyframes pullBulb {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(14deg); }
+  45%  { transform: rotate(-8deg); }
+  65%  { transform: rotate(5deg); }
+  82%  { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* ── Light-on glow pulse ── */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.75; transform: translateX(-50%) scale(1); }
+  50%       { opacity: 1;    transform: translateX(-50%) scale(1.12); }
+}
+
+/* ── About entrance ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Hero ambient blobs drifting ── */
+@keyframes floatBlob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(24px, -28px) scale(1.08); }
+}
+
+/* ── Hero tech marquee ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Hero name gradient sweep ── */
+@keyframes gradientFlow {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Light-mode global override */
+html[data-theme="light"] #root {
+  background: #f5f3ff;
+}
+
+/* Prevent adjacent slideshow slides from peeking */
+.react-slideshow-container,
+.react-slideshow-wrapper,
+.react-slideshow-wrapper > div { overflow: hidden !important; }
+
+#root {
+  background-color: black;
+  min-height: 100vh;
 }

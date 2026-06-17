@@ -1,149 +1,337 @@
-import React from "react";
+import React, { useState } from "react";
 import Typewriter from "typewriter-effect";
+import { useTheme } from "../../context/ThemeContext";
 
-export default function Home() {
+/* ─── Bulb SVG ─────────────────────────────────────────────── */
+function BulbSVG({ isDark }) {
   return (
-    <main>
-      <section
-        id="home"
-        className="bg-white dark:bg-black flex pt-16 flex-wrap justify-between w-screen"
-      >
-        <img
-          src="https://cdn-icons-png.flaticon.com/128/5263/5263662.png"
-          className="bg-white dark:bg-black w-12 h-20 ml-6 hidden md:block md:ml-24"
-          alt="bulb"
-        />
+    <svg width="42" height="68" viewBox="0 0 42 68" fill="none">
+      {/* screw base */}
+      <rect x="13" y="0"  width="16" height="5" rx="1.5"
+        fill={isDark ? "#6b7280" : "#9ca3af"}/>
+      <rect x="11" y="5"  width="20" height="4"
+        fill={isDark ? "#4b5563" : "#6b7280"}/>
+      <rect x="13" y="9"  width="16" height="4"
+        fill={isDark ? "#6b7280" : "#9ca3af"}/>
+      <rect x="11" y="13" width="20" height="4"
+        fill={isDark ? "#4b5563" : "#6b7280"}/>
+      {/* glass */}
+      <path
+        d="M13 17 L13 23 C13 31 2 37 2 49 C2 61 10 68 21 68 C32 68 40 61 40 49 C40 37 29 31 29 23 L29 17 Z"
+        fill={isDark ? "rgba(200,220,255,0.05)" : "rgba(255,235,140,0.78)"}
+        stroke={isDark ? "rgba(200,220,255,0.2)" : "rgba(255,185,0,0.85)"}
+        strokeWidth="1.5"
+        style={!isDark ? { filter: "drop-shadow(0 0 10px rgba(255,200,0,0.65))" } : {}}
+      />
+      {!isDark && (
+        <ellipse cx="21" cy="50" rx="13" ry="15"
+          fill="rgba(255,230,100,0.2)"/>
+      )}
+      {/* filament */}
+      <path d="M15 45 Q18 36 21 45 Q24 36 27 45"
+        stroke={isDark ? "#374151" : "#d97706"}
+        strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+    </svg>
+  );
+}
 
-        <div className="flex flex-col md:flex-row items-center w-full">
-          <img
-            src="/Mypic.jpeg"
-            className="bg-white dark:bg-black w-1/3 mx-auto md:ml-44 md:-mt-20 hidden md:block"
-            alt="my Pic"
-          />
+/* ─── Hanging bulb (inline, above photo) ───────────────────── */
+function HangingBulb() {
+  const { isDark, toggle } = useTheme();
+  const [pulling, setPulling] = useState(false);
 
-          <div className="w-full md:w-2/3 text-center md:text-end">
-            <div className="h-1/3 w-full font-mono pr-0 md:pr-32 font-extrabold pt-[110px] text-black dark:text-white text-3xl md:text-5xl">
-              <Typewriter
-                options={{
-                  strings: ["Hello There!!!", "नमस्ते!!!"],
-                  autoStart: true,
-                  loop: true,
-                }}
-              />
-            </div>
-            <div className="h-2/3 w-auto mt-4 md:mt-0">
-              <h1 className="font-Anton text-4xl md:text-8xl md:pr-32 text-purple-800">
-                <span className="text-black dark:text-white text-4xl md:text-8xl font-Anton">
-                  I AM
-                </span>{" "}
-                SAFAL PATHAK
-              </h1>
+  const click = () => {
+    if (pulling) return;
+    setPulling(true);
+    setTimeout(() => { toggle(); setPulling(false); }, 500);
+  };
 
-              <h1 className="text-black dark:text-white font-serif text-sm md:pr-20 mt-4 md:mt-0">
-                Hello! I'm passionate about exploring the vast landscape of
-                technology. My expertise spans various programming languages and
-                tools, including C++, Python, JavaScript, HTML5, CSS3, and more.
-                With a solid foundation in Git, I'm adept at version control,
-                ensuring smooth collaboration on projects. I have hands-on
-                experience with popular frameworks like Tailwind CSS and
-                Bootstrap, bringing creativity and responsiveness to my web
-                development projects. My proficiency extends to database
-                management, with knowledge in MySQL and SQLite. As a developer,
-                I thrive in the world of IDEs, from PyCharm to Visual Studio
-                Code, ensuring an efficient and enjoyable coding experience.
-                Whether it's crafting backend logic with Flask or creating
-                visually appealing frontends, 🚀
-              </h1>
+  return (
+    <div
+      onClick={click}
+      title={isDark ? "Turn light on" : "Turn light off"}
+      style={{
+        display: "flex", flexDirection: "column", alignItems: "center",
+        transformOrigin: "top center",
+        animation: pulling
+          ? "pullBulb 0.7s cubic-bezier(0.22,1,0.36,1) forwards"
+          : "gentleSwing 3.8s ease-in-out infinite",
+        cursor: "pointer",
+        userSelect: "none",
+        flexShrink: 0,
+      }}
+    >
+      {/* rope */}
+      <div style={{
+        width: 2, height: 72,
+        background: "linear-gradient(to bottom, rgba(80,80,80,0.3), #5b6472)",
+        borderRadius: 1,
+      }}/>
+      {/* glow */}
+      <div style={{ position: "relative" }}>
+        {!isDark && (
+          <div style={{
+            position: "absolute", top: "55%", left: "50%",
+            transform: "translateX(-50%)",
+            width: 120, height: 120, borderRadius: "50%",
+            background: "radial-gradient(circle,rgba(255,220,80,0.4) 0%,transparent 72%)",
+            filter: "blur(12px)", pointerEvents: "none",
+            animation: "glowPulse 2.2s ease-in-out infinite",
+          }}/>
+        )}
+        <BulbSVG isDark={isDark}/>
+      </div>
+      <span style={{
+        marginTop: 5, fontFamily: "monospace", fontSize: 7,
+        letterSpacing: "0.14em",
+        color: isDark ? "rgba(168,85,247,0.45)" : "rgba(217,119,6,0.7)",
+      }}>{isDark ? "DARK" : "LIGHT"}</span>
+    </div>
+  );
+}
 
-              <div className="flex items-end justify-end mt-4 md:pr-32 md:mt-0">
-                <a
-                  href="https://drive.google.com/file/d/1-CsqiwmNawycnw83Nn7S1LXxVT2DuC3L/view"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <button className="bg-black h-[30px] w-[110px] mr-5 hover:shadow-md hover:shadow-fuchsia-50 shadow-md shadow-purple-500 border border-purple-800 text-white font-bold py-2 px-4 rounded-2xl inline-flex items-center">
-                    <svg
-                      className="fill-current w-4 h-4 mr-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                    </svg>
-                    <span>Resume</span>
-                  </button>
-                </a>
+const TECH = [
+  { name: "React",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/react/react-original.svg" },
+  { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/javascript/javascript-original.svg" },
+  { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/typescript/typescript-original.svg" },
+  { name: "HTML5",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/html5/html5-original.svg" },
+  { name: "CSS3",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/css3/css3-original.svg" },
+  { name: "Tailwind",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/tailwindcss/tailwindcss-original.svg" },
+  { name: "Python",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/python/python-original.svg" },
+  { name: "Flask",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/flask/flask-original.svg" },
+  { name: "Django",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/django/django-plain.svg" },
+  { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/postgresql/postgresql-original.svg" },
+  { name: "Git",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/git/git-original.svg" },
+];
 
-                <a
-                  href="https://www.instagram.com/safal.pathak29/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg
-                    className="h-[25px] w-[25px] bg-black shadow-lg mx-2 text-purple-800"
-                    fill="#FFFFFF"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 50 50"
-                    width="50px"
-                    height="50px"
-                  >
-                    <path d="M 16 3 C 8.8324839 3 3 8.8324839 3 16 L 3 34 C 3 41.167516 8.8324839 47 16 47 L 34 47 C 41.167516 47 47 41.167516 47 34 L 47 16 C 47 8.8324839 41.167516 3 34 3 L 16 3 z M 16 5 L 34 5 C 40.086484 5 45 9.9135161 45 16 L 45 34 C 45 40.086484 40.086484 45 34 45 L 16 45 C 9.9135161 45 5 40.086484 5 34 L 5 16 C 5 9.9135161 9.9135161 5 16 5 z M 37 11 A 2 2 0 0 0 35 13 A 2 2 0 0 0 37 15 A 2 2 0 0 0 39 13 A 2 2 0 0 0 37 11 z M 25 14 C 18.936712 14 14 18.936712 14 25 C 14 31.063288 18.936712 36 25 36 C 31.063288 36 36 31.063288 36 25 C 36 18.936712 31.063288 14 25 14 z M 25 16 C 29.982407 16 34 20.017593 34 25 C 34 29.982407 29.982407 34 25 34 C 20.017593 34 16 29.982407 16 25 C 16 20.017593 20.017593 16 25 16 z" />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/safal-pathak-22069a25b/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg
-                    className="h-[25px] w-[25px]  bg-black mx-2 text-purple-800"
-                    fill="#FFFFFF"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 50 50"
-                    width="50px"
-                    height="50px"
-                  >
-                    <path d="M 9 4 C 6.2504839 4 4 6.2504839 4 9 L 4 41 C 4 43.749516 6.2504839 46 9 46 L 41 46 C 43.749516 46 46 43.749516 46 41 L 46 9 C 46 6.2504839 43.749516 4 41 4 L 9 4 z M 9 6 L 41 6 C 42.668484 6 44 7.3315161 44 9 L 44 41 C 44 42.668484 42.668484 44 41 44 L 9 44 C 7.3315161 44 6 42.668484 6 41 L 6 9 C 6 7.3315161 7.3315161 6 9 6 z M 14 11.011719 C 12.904779 11.011719 11.919219 11.339079 11.189453 11.953125 C 10.459687 12.567171 10.011719 13.484511 10.011719 14.466797 C 10.011719 16.333977 11.631285 17.789609 13.691406 17.933594 A 0.98809878 0.98809878 0 0 0 13.695312 17.935547 A 0.98809878 0.98809878 0 0 0 14 17.988281 C 16.27301 17.988281 17.988281 16.396083 17.988281 14.466797 A 0.98809878 0.98809878 0 0 0 17.986328 14.414062 C 17.884577 12.513831 16.190443 11.011719 14 11.011719 z M 13.894531 20.509766 C 11.127812 20.509766 10 22.539702 10 25.117188 L 10 37.011719 C 10 37.564391 10.447329 38.011719 11 38.011719 L 16 38.011719 C 16.552671 38.011719 17 37.564391 17 37.011719 L 17 25.117188 C 17 22.539702 15.872188 20.509766 13.105469 20.509766 L 13.894531 20.509766 z M 22 20.509766 C 20.355473 20.509766 19 21.79078 19 23.199219 L 19 25.300781 C 19 25.853453 19.447329 26.300781 20 26.300781 C 20.552671 26.300781 21 25.853453 21 25.300781 L 21 23.199219 C 21 22.914658 21.276133 22.509766 22 22.509766 C 22.723867 22.509766 23 22.914658 23 23.199219 L 23 36.300781 C 23 36.853453 23.447329 37.300781 24 37.300781 C 24.552671 37.300781 25 36.853453 25 36.300781 L 25 31.798828 C 25 30.845714 25.7245 30.15625 26.525391 30.15625 C 27.326282 30.15625 28 30.845714 28 31.798828 L 28 36.300781 C 28 36.853453 28.447329 37.300781 29 37.300781 C 29.552671 37.300781 30 36.853453 30 36.300781 L 30 31.798828 C 30 30.845714 30.7245 30.15625 31.525391 30.15625 C 32.326282 30.15625 33 30.845714 33 31.798828 L 33 36.300781 C 33 36.853453 33.447329 37.300781 34 37.300781 C 34.552671 37.300781 35 36.853453 35 36.300781 L 35 27.935547 C 35 24.522095 32.120358 22.509766 29.554688 22.509766 C 27.899473 22.509766 26.526486 23.324673 25.78125 24.513672 C 25.035973 23.324673 23.644527 22.509766 22 22.509766 C 21.911802 22.509766 21.823447 22.511239 21.736328 22.513672 C 21.736328 22.512251 21.736328 22.510799 21.736328 22.509766 L 22 20.509766 z" />
-                  </svg>
-                </a>
+const SOCIALS = [
+  { href: "https://www.instagram.com/safal45/", d: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 1.441c-3.163 0-3.535.012-4.787.069-2.877.131-4.214 1.47-4.345 4.345-.057 1.252-.07 1.623-.07 4.787 0 3.163.013 3.535.07 4.787.131 2.873 1.466 4.214 4.345 4.345 1.252.057 1.623.07 4.787.07 3.164 0 3.535-.013 4.788-.07 2.873-.131 4.214-1.467 4.345-4.345.057-1.252.07-1.624.07-4.787 0-3.164-.013-3.535-.07-4.787-.131-2.878-1.473-4.214-4.345-4.345-1.253-.057-1.624-.069-4.788-.069zm0 2.441a5.955 5.955 0 100 11.91 5.955 5.955 0 000-11.91zm0 9.824a3.869 3.869 0 110-7.738 3.869 3.869 0 010 7.738zm6.162-10.063a1.392 1.392 0 100 2.784 1.392 1.392 0 000-2.784z", vb: "0 0 24 24" },
+  { href: "https://www.linkedin.com/in/safal-pathak/", d: "M9 4C6.25 4 4 6.25 4 9v32c0 2.75 2.25 5 5 5h32c2.75 0 5-2.25 5-5V9c0-2.75-2.25-5-5-5H9zm5 7c2.27 0 3.99 1.52 3.99 3.47C17.99 16.4 16.27 18 14 18c-2.27 0-3.99-1.6-3.99-3.53C10.01 12.52 11.73 11 14 11zm-3.5 9.5h7v17h-7v-17zm11 0h6.5v2.3h.1c.9-1.7 3.1-3.5 6.4-3.5 6.8 0 8 4.5 8 10.3V37h-7v-6.7c0-2.5-.05-5.8-3.5-5.8-3.5 0-4 2.7-4 5.6V37h-6.5V20.5z", vb: "0 0 50 50" },
+  { href: "https://github.com/safal45", d: "M10.9 2C6.3 2 2.6 5.7 2.6 10.3c0 3.7 2.4 6.8 5.7 7.9.4.1.5-.2.5-.4 0-.2 0-.8 0-1.6-2.3.5-2.8-1-2.8-1-.4-.9-.8-1.3-.8-1.3-.8-.5.1-.5.1-.5.9.1 1.4.9 1.4.9.8 1.4 2 1 2.5.8.1-.6.3-1 .6-1.2-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.2-.1-.2-.3-1.2.2-2.5 0 0 .7-.2 2.3.8.7-.2 1.5-.3 2.3-.3.8 0 1.6.1 2.3.3 1.6-1 2.3-.8 2.3-.8.5 1.3.3 2.3.2 2.5.5.6.8 1.3.8 2.2 0 3.1-1.9 3.8-3.6 4 .3.3.6.9.6 1.8 0 1.3 0 2.3 0 2.6 0 .2.2.5.6.4 3.3-1.1 5.7-4.2 5.7-7.9C19.2 5.7 15.5 2 10.9 2z", vb: "0 0 24 24" },
+  { href: "mailto:ptksafalpathak@gmail.com", d: "M20 4H4c-.8 0-1.4.65-1.4 1.45v13.1C2.6 19.35 3.25 20 4.05 20h15.9c.8 0 1.45-.65 1.45-1.45V5.45C21.4 4.65 20.75 4 19.95 4zM18.8 8.4l-6.09 3.8c-.21.13-.45.2-.71.2s-.5-.07-.71-.2L5.2 8.4C5.07 8.32 5 8.18 5 8.03c0-.25.2-.45.45-.45h13.1c.25 0 .45.2.45.45 0 .15-.07.29-.2.37z", vb: "0 0 24 24" },
+];
 
-                <a
-                  href="https://github.com/safal45"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg
-                    className="h-[25px] w-[25px] shadow-lg bg-black mx-2 text-purple-800"
-                    fill="#FFFFFF"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="50px"
-                    height="50px"
-                  >
-                    <path d="M10.9,2C6.3,2,2.6,5.7,2.6,10.3c0,3.7,2.4,6.8,5.7,7.9c0.4,0.1,0.5-0.2,0.5-0.4c0-0.2,0-0.8,0-1.6 c-2.3,0.5-2.8-1-2.8-1C5.4,14.3,5,13.9,5,13.9c-0.8-0.5,0.1-0.5,0.1-0.5c0.9,0.1,1.4,0.9,1.4,0.9c0.8,1.4,2,1,2.5,0.8 c0.1-0.6,0.3-1,0.6-1.2c-1.8-0.2-3.6-0.9-3.6-4c0-0.9,0.3-1.6,0.8-2.2C6.6,7.7,6.4,6.7,6.9,5.4c0,0,0.7-0.2,2.3,0.8 c0.7-0.2,1.5-0.3,2.3-0.3c0.8,0,1.6,0.1,2.3,0.3c1.6-1,2.3-0.8,2.3-0.8c0.5,1.3,0.3,2.3,0.2,2.5c0.5,0.6,0.8,1.3,0.8,2.2 c0,3.1-1.9,3.8-3.6,4c0.3,0.3,0.6,0.9,0.6,1.8c0,1.3,0,2.3,0,2.6c0,0.2,0.2,0.5,0.6,0.4c3.3-1.1,5.7-4.2,5.7-7.9 C19.2,5.7,15.5,2,10.9,2z" />
-                  </svg>
-                </a>
+/* ─── Home ──────────────────────────────────────────────────── */
+export default function Home() {
+  const { isDark } = useTheme();
 
-                <a
-                  href="mailto:ptksafalpathak@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg
-                    className="h-[25px] w-[25px] shadow-lg bg-black mx-2 text-purple-800"
-                    fill="#FFFFFF"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="50px"
-                    height="50px"
-                  >
-                    <path d="M19.95,4H4.05C3.25,4,2.6,4.65,2.6,5.45v13.1C2.6,19.35,3.25,20,4.05,20h15.9c0.8,0,1.45-0.65,1.45-1.45V5.45 C21.4,4.65,20.75,4,19.95,4z M18.8,8.4l-6.09,3.8c-0.21,0.13-0.45,0.2-0.71,0.2s-0.5-0.07-0.71-0.2L5.2,8.4C5.07,8.32,5,8.18,5,8.03 c0-0.25,0.2-0.45,0.45-0.45h13.1c0.25,0,0.45,0.2,0.45,0.45C19,8.18,18.93,8.32,18.8,8.4z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
+  const bg      = isDark ? "#000"    : "#f5f3ff";
+  const textPri = isDark ? "#f1f5f9" : "#1e1b4b";
+  const textSec = isDark ? "#c4cdd8" : "#4c1d95";
+  const accent  = isDark ? "#a855f7" : "#7c3aed";
+  const accent2 = isDark ? "#6d28d9" : "#a855f7";
+  const iconClr = isDark ? "#6b7280" : "#7c3aed";
+  const gridLn  = isDark ? "rgba(168,85,247,0.06)" : "rgba(109,40,217,0.05)";
+  const marqueeBorder = isDark ? "rgba(168,85,247,0.14)" : "rgba(109,40,217,0.14)";
+
+  return (
+    <section
+      id="home"
+      style={{
+        height: "100vh",
+        background: bg,
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+        position: "relative",
+        transition: "background 0.4s ease",
+      }}
+    >
+      {/* grid texture */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        backgroundImage: `linear-gradient(${gridLn} 1px, transparent 1px), linear-gradient(90deg, ${gridLn} 1px, transparent 1px)`,
+        backgroundSize: "44px 44px",
+        maskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 80%)",
+        WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 80%)",
+      }}/>
+
+      {/* ambient blobs */}
+      <div style={{
+        position: "absolute", top: "8%", right: "8%",
+        width: 460, height: 460, borderRadius: "50%",
+        background: `radial-gradient(circle,${isDark?"rgba(168,85,247,0.08)":"rgba(109,40,217,0.06)"} 0%,transparent 70%)`,
+        filter: "blur(70px)", pointerEvents: "none",
+        animation: "floatBlob 9s ease-in-out infinite",
+      }}/>
+      <div style={{
+        position: "absolute", bottom: "6%", left: "6%",
+        width: 380, height: 380, borderRadius: "50%",
+        background: `radial-gradient(circle,${isDark?"rgba(109,40,217,0.09)":"rgba(168,85,247,0.06)"} 0%,transparent 70%)`,
+        filter: "blur(60px)", pointerEvents: "none",
+        animation: "floatBlob 11s ease-in-out infinite reverse",
+      }}/>
+
+      {/* giant watermark */}
+      <h2 aria-hidden="true" style={{
+        position: "absolute", top: "50%", left: "50%",
+        transform: "translate(-50%, -50%)",
+        fontFamily: "'Anton', sans-serif",
+        fontSize: "clamp(120px, 22vw, 300px)",
+        letterSpacing: "0.02em",
+        margin: 0, whiteSpace: "nowrap",
+        color: "transparent",
+        WebkitTextStroke: `1.5px ${isDark ? "rgba(168,85,247,0.08)" : "rgba(109,40,217,0.07)"}`,
+        pointerEvents: "none",
+        userSelect: "none",
+      }}>SAFAL</h2>
+
+      {/* header spacer */}
+      <div style={{ height: 64, flexShrink: 0 }}/>
+
+      {/* bulb: hangs in the top-left corner */}
+      <div style={{
+        position: "absolute", top: 64, left: "2cm",
+        zIndex: 2,
+        animation: "fadeUp 0.6s ease-out both",
+      }}>
+        <HangingBulb/>
+      </div>
+
+      {/* ── Main centered content ── */}
+      <div style={{
+        flex: 1,
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        zIndex: 1,
+        padding: "0 24px",
+        minHeight: 0,
+      }}>
+        {/* typewriter */}
+        <div style={{
+          fontFamily: "monospace", fontWeight: 800,
+          fontSize: "clamp(16px, 2.4vw, 24px)",
+          color: textPri, marginTop: 6, marginBottom: 8,
+          animation: "fadeUp 0.6s ease-out 0.05s both",
+        }}>
+          <Typewriter options={{ strings: ["Hello There!!!", "नमस्ते!!!"], autoStart: true, loop: true }}/>
+        </div>
+
+        {/* name */}
+        <h1 style={{
+          fontFamily: "'Anton', sans-serif",
+          fontSize: "clamp(40px, 8vw, 96px)",
+          lineHeight: 1, margin: "0 0 14px",
+          textAlign: "center",
+          animation: "fadeUp 0.6s ease-out 0.12s both",
+        }}>
+          <span style={{ color: textPri }}>I AM </span>
+          <span style={{
+            backgroundImage: `linear-gradient(90deg, ${accent}, ${accent2}, ${accent})`,
+            backgroundSize: "200% auto",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+            animation: "gradientFlow 4s linear infinite alternate",
+          }}>SAFAL PATHAK</span>
+        </h1>
+
+        {/* sub-label */}
+        <div style={{
+          display: "flex", alignItems: "center", gap: 12,
+          margin: "0 0 18px",
+          animation: "fadeUp 0.6s ease-out 0.18s both",
+        }}>
+          <span style={{ width: 28, height: 1, background: accent, opacity: 0.5 }}/>
+          <span style={{
+            display: "inline-flex", alignItems: "center", gap: 7,
+            fontFamily: "monospace", fontSize: 11,
+            color: accent, letterSpacing: "0.22em", opacity: 0.9,
+          }}>
+            <span className="animate-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: accent }}/>
+            FULL STACK DEVELOPER
+          </span>
+          <span style={{ width: 28, height: 1, background: accent, opacity: 0.5 }}/>
+        </div>
+
+        {/* bio */}
+        <p style={{
+          color: textSec,
+          fontSize: "clamp(13px, 1.3vw, 15px)",
+          lineHeight: 1.85,
+          maxWidth: 600,
+          textAlign: "center",
+          marginBottom: 30,
+          animation: "fadeUp 0.6s ease-out 0.24s both",
+        }}>
+          Full Stack Developer graduating May&nbsp;2026 — building production-grade
+          apps with React.js, Flask, Django&nbsp;&amp;&nbsp;PostgreSQL. JWT auth,
+          3-role RBAC, 250+&nbsp;DSA solved. Open source contributor
+          (GSSOC&nbsp;2024).&nbsp;🚀
+        </p>
+
+        {/* CTA row */}
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 18, flexWrap: "wrap",
+          marginBottom: 36,
+          animation: "fadeUp 0.6s ease-out 0.3s both",
+        }}>
+          <a
+            href="https://drive.google.com/file/d/1oAHyFm8IRIgsXQSicedBiBNh1i-Ft9vV/view?usp=sharing"
+            target="_blank" rel="noopener noreferrer"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              padding: "11px 28px", borderRadius: 999,
+              background: accent, color: "#fff",
+              fontFamily: "'Anton', sans-serif", fontSize: 13,
+              letterSpacing: "0.1em", textDecoration: "none",
+              boxShadow: `0 0 24px ${isDark?"rgba(168,85,247,0.4)":"rgba(109,40,217,0.3)"}`,
+              transition: "opacity 0.2s",
+            }}
+            onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+            onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+          >
+            <svg style={{ width: 14, height: 14, fill: "#fff" }} viewBox="0 0 20 20">
+              <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+            </svg>
+            RESUME
+          </a>
+
+          {/* social icons */}
+          {SOCIALS.map(({ href, d, vb }) => (
+            <a key={href} href={href} target="_blank" rel="noopener noreferrer"
+              style={{ color: iconClr, transition: "color 0.2s", display: "flex" }}
+              onMouseEnter={e => e.currentTarget.style.color = accent}
+              onMouseLeave={e => e.currentTarget.style.color = iconClr}
+            >
+              <svg style={{ width: 22, height: 22 }} fill="currentColor" viewBox={vb}>
+                <path d={d} fillRule="evenodd" clipRule="evenodd"/>
+              </svg>
+            </a>
+          ))}
+        </div>
+
+        {/* tech marquee */}
+        <div style={{
+          width: "100%", maxWidth: 760,
+          borderTop: `1px solid ${marqueeBorder}`,
+          paddingTop: 18,
+          overflow: "hidden",
+          maskImage: "linear-gradient(90deg, transparent, black 12%, black 88%, transparent)",
+          WebkitMaskImage: "linear-gradient(90deg, transparent, black 12%, black 88%, transparent)",
+          animation: "fadeUp 0.6s ease-out 0.36s both",
+        }}>
+          <div style={{
+            display: "flex", gap: 36, width: "max-content",
+            animation: "marquee 22s linear infinite",
+          }}>
+            {[...TECH, ...TECH].map(({ name, icon }, i) => (
+              <span key={i} style={{
+                display: "flex", alignItems: "center", gap: 8,
+                fontFamily: "monospace", fontSize: 12,
+                color: textSec, opacity: 0.8, whiteSpace: "nowrap",
+              }}>
+                <img src={icon} alt="" width="16" height="16" style={{ display: "block" }}/>
+                {name}
+              </span>
+            ))}
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }
