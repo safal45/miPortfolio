@@ -75,7 +75,7 @@ export default function Header() {
         </button>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex" style={{ gap: 32, alignItems: "center", display: "flex" }}>
+        <nav className="hidden lg:flex" style={{ gap: 32, alignItems: "center" }}>
           {NAV.map(({ label, id }) => (
             <button
               key={id}

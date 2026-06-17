@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
 
 const BASE = "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons";
@@ -156,8 +156,20 @@ function SkillCard({ skill, idx, isDark }) {
 
 export default function TechStack() {
   const { isDark } = useTheme();
-  const [active, setActive] = useState("All");
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  const [active, setActive] = useState(() => (window.innerWidth < 768 ? "Frontend" : "All"));
 
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handler = (e) => {
+      setIsMobile(e.matches);
+      if (e.matches) setActive((cur) => (cur === "All" ? "Frontend" : cur));
+    };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  const visibleCats = isMobile ? CATS.filter((c) => c !== "All") : CATS;
   const filtered = active === "All" ? skills : skills.filter((s) => s.cat === active);
 
   const bg       = isDark ? "#000"     : "#f5f3ff";
@@ -223,7 +235,7 @@ export default function TechStack() {
 
       {/* Category filter tabs */}
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, marginBottom: 22 }}>
-        {CATS.map((cat) => {
+        {visibleCats.map((cat) => {
           const on = active === cat;
           const c  = CAT_COLOR[cat];
           return (
@@ -246,14 +258,12 @@ export default function TechStack() {
         })}
       </div>
 
-      {/* Grid — 9 cols forces exactly 2 rows for 18 skills (or fewer for filtered) */}
+      {/* Grid — 9 cols forces exactly 2 rows for 18 skills on tablet+ (mobile always wraps) */}
       <div
         key={active}
+        className={`skills-grid${active === "All" ? " skills-grid--all" : ""}`}
         style={{
           display: "grid",
-          gridTemplateColumns: active === "All"
-            ? "repeat(9, 1fr)"
-            : "repeat(auto-fill, minmax(108px, 1fr))",
           gap: 12,
           maxWidth: 1000,
           margin: "0 auto",

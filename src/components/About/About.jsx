@@ -33,10 +33,10 @@ export default function About() {
   return (
     <section
       id="about"
+      className="about-section"
       style={{
         minHeight: "100vh",
         background: bg,
-        padding: "80px 40px 60px",
         boxSizing: "border-box",
         transition: "background 0.4s ease",
       }}
@@ -54,14 +54,14 @@ export default function About() {
           </h2>
         </div>
 
-        {/* ── Two column grid ── */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "260px 1fr",
-          gap: 48,
-          alignItems: "start",
-        }}
-          className="grid-cols-1 lg:grid-cols-[260px_1fr]"
+        {/* ── Two column grid (stacked on mobile, sidebar from desktop up) ── */}
+        <div
+          className="about-grid"
+          style={{
+            display: "grid",
+            gap: 48,
+            alignItems: "start",
+          }}
         >
 
           {/* ═══ LEFT: identity card ═══ */}
@@ -193,7 +193,7 @@ export default function About() {
             </div>
 
             {/* Experience + Interests row */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div className="about-card-row" style={{ display: "grid", gap: 16 }}>
               {/* Experience */}
               <div style={{
                 background: surface, border: `1px solid ${border}`,

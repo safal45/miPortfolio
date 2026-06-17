@@ -111,16 +111,14 @@ export default function Projects() {
   return (
     <section
       id="project"
+      className="projects-section"
       style={{
-        height: "100vh",
-        minHeight: 600,
         background: bg,
         display: "flex",
         flexDirection: "column",
         padding: "72px 24px 24px",
         boxSizing: "border-box",
         position: "relative",
-        overflow: "hidden",
         transition: "background 0.4s ease",
       }}
     >
@@ -141,7 +139,7 @@ export default function Projects() {
         {/* Heading row */}
         <div style={{
           display: "flex", alignItems: "flex-end",
-          justifyContent: "space-between",
+          justifyContent: "space-between", flexWrap: "wrap", gap: 10,
           flexShrink: 0, marginBottom: 20,
         }}>
           <div>
@@ -178,7 +176,7 @@ export default function Projects() {
             {/* Top accent bar */}
             <div style={{ height: 4, background: project.accent }} />
 
-            <div style={{ padding: "32px 40px 36px" }}>
+            <div className="project-card-body">
               {/* Top row: LIVE badge or label + faded number */}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
                 {project.deploy ? (

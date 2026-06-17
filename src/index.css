@@ -74,3 +74,65 @@ html[data-theme="light"] #root {
   background-color: black;
   min-height: 100vh;
 }
+
+/* ── Skills tech grid: 9-col "All" layout only on tablet+; mobile always wraps ── */
+.skills-grid {
+  grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+}
+@media (min-width: 768px) {
+  .skills-grid.skills-grid--all {
+    grid-template-columns: repeat(9, 1fr);
+  }
+}
+
+/* ── About: stacked on mobile, sidebar layout from desktop up ── */
+.about-section {
+  padding: 64px 20px 40px;
+}
+@media (min-width: 640px) {
+  .about-section {
+    padding: 80px 40px 60px;
+  }
+}
+
+.about-grid {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 260px 1fr;
+  }
+}
+
+.about-card-row {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .about-card-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── Projects: natural height on mobile (centered card overflows otherwise), fixed 100vh slide from desktop up ── */
+.projects-section {
+  height: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+@media (min-width: 1024px) {
+  .projects-section {
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+  }
+}
+
+.project-card-body {
+  padding: 22px 20px 26px;
+}
+@media (min-width: 640px) {
+  .project-card-body {
+    padding: 32px 40px 36px;
+  }
+}
